@@ -1,4 +1,5 @@
 import { useState } from 'react';
+import SpecialPara from './SpecialPara';
 
 export default function Greeting() {
   const [changedText, setChangedText] = useState(false);
@@ -11,8 +12,8 @@ export default function Greeting() {
     <div>
       <h2>Hello world!</h2>
 
-      {!changedText && <p>We are learnig Testing React</p>}
-      {changedText && <p>Changed!</p>}
+      {!changedText && <SpecialPara>We are learnig Testing React</SpecialPara>}
+      {changedText && <SpecialPara>Changed!</SpecialPara>}
 
       <button onClick={buttonHandler}>Click me</button>
     </div>
