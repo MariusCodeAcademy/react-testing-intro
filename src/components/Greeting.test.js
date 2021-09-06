@@ -1,5 +1,6 @@
 import Greeting from './Greeting';
 import { render, screen } from '@testing-library/react';
+import userEvent from '@testing-library/user-event';
 
 describe('<Greenting />', () => {
   // Unit test
@@ -15,10 +16,24 @@ describe('<Greenting />', () => {
     expect(titleEl).toBeInTheDocument();
   });
 
-  // it('Shoud be 2 titles', () => {
-  //   render(<Greeting />);
+  it('Sould say "learnig Testing React" in the beginig of app', () => {
+    // Arrange
+    render(<Greeting />);
+    // Assert
+    const pEl = screen.getByText('learnig Testing React', { exact: false });
+    expect(pEl).toBeInTheDocument();
+  });
 
-  //   const twoTittleArr = screen.getAllByText('Hello world!');
-  //   expect(twoTittleArr.length).toBe(2);
-  // });
+  it('Should say "Changed" after button click', () => {
+    // Arrange
+    render(<Greeting />);
+
+    // Act
+    const btnEl = screen.getByRole('button');
+    userEvent.click(btnEl);
+
+    //Assert
+    const pEl = screen.getByText('Changed!');
+    expect(pEl).toBeInTheDocument();
+  });
 });
