@@ -1,5 +1,5 @@
 import Greeting from './Greeting';
-import { render, screen } from '@testing-library/react';
+import { getByRole, render, screen } from '@testing-library/react';
 import userEvent from '@testing-library/user-event';
 
 describe('<Greenting />', () => {
@@ -35,5 +35,20 @@ describe('<Greenting />', () => {
     //Assert
     const pEl = screen.getByText('Changed!');
     expect(pEl).toBeInTheDocument();
+  });
+
+  it('"We are learnig Testing React" should not be in the document after btn click', () => {
+    // Arrange
+    render(<Greeting />);
+
+    // Act
+    const btnEl = screen.getByRole('button');
+    userEvent.click(btnEl);
+
+    // Assert
+    // query - grazina null kai neranda bet nemeta klaidos
+    const pEl = screen.queryByText('learnig Testing React', { exact: false });
+    expect(pEl).not.toBeInTheDocument();
+    // expect(pEl).toBeNull();
   });
 });
