@@ -14,10 +14,19 @@ describe('not async test', () => {
 });
 
 describe('Async posts test', () => {
-  it('Should render post title list', async () => {
-    render(<ListPosts />);
+  it('Should render post title list sdfsd', async () => {
+    // Mock a fetch function
+    // sakom kad fetch() butu jest funkcija
+    window.fetch = jest.fn();
+    // fetch dabar turetu grazinti ka mes aprasysim
+    window.fetch.mockResolvedValueOnce({
+      json: () => [{ id: 'p1', title: 'kazkoks title' }],
+    });
 
+    render(<ListPosts />);
+    // findAllByRole('ko ieskom', {exact: false}, {timeout: 1000})
     const listItems = await screen.findAllByRole('listitem');
     expect(listItems).not.toHaveLength(0);
+    expect(listItems).toHaveLength(1);
   });
 });
