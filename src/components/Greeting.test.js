@@ -1,15 +1,24 @@
 import Greeting from './Greeting';
 import { render, screen } from '@testing-library/react';
 
-// Unit test
-it('Should contain Hello word', () => {
-  // Arrange
-  render(<Greeting />);
+describe('<Greenting />', () => {
+  // Unit test
+  it('Should contain Hello word', () => {
+    // Arrange
+    render(<Greeting />);
 
-  //Act
-  // ...
+    //Act
+    // ...
 
-  //Assert
-  const titleEl = screen.getByText('Hello world', { exact: false });
-  expect(titleEl).toBeInTheDocument();
+    //Assert
+    const titleEl = screen.getByText('Hello world', { exact: false });
+    expect(titleEl).toBeInTheDocument();
+  });
+
+  // it('Shoud be 2 titles', () => {
+  //   render(<Greeting />);
+
+  //   const twoTittleArr = screen.getAllByText('Hello world!');
+  //   expect(twoTittleArr.length).toBe(2);
+  // });
 });
